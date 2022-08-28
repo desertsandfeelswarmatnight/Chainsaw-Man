@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>새로이</title>
+        <link rel="stylesheet" href="\header.css">
+        <link rel="stylesheet" href="\main.css">
+        <script src="\JavaScript.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <nav id="header_flex-container">
+                <div class="header_flex-item">
+                    <h1>유은상</h1>
+                </div>
+
+                <div class="header_flex-item">
+                    <ul id="header-lists">
+                        <li><a href="#">여기는 대체 어디인가?</a></li>
+                        <li><a href="#">한 마디 남기기</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=wJWksPWDKOc" target="_blank" title="Everywhere At The End Of Time">내가 좋아하는 노래</a></li>
+                        <li><a href="#">정보4</a></li>
+                        <li><a href="#">정보5</a></li>
+                    </ul>
+                </div>
+
+                <div class="header_flex-item" style="margin-right: 15px;">
+                    <button type="button" id="Log-In">
+                        <a href="\Log-In.html" target="_blank">로그인</a>
+                    </button>
+                    <button type="button" id="Sign-Up" value="good">
+                        <a href="/Sign-Up.html" target="_blank">회원 가입</a>
+                    </button>
+                    <button type="button" value="night" onclick="Dark_Mode(this)">
+                        Dark Beach
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- <main role="main" style="font-family: 'MaruBuri-Regular'">
+            <article style="padding-top: 72px">
+                <section>
+                    <h2>포트폴리오</h2>
+                    <h3 style="margin-left: 5px">가보자 가보자</h3>
+                    <div id="grid">
+                        <ul id="card-container">
+                            <li class="card">
+                                <a href="https://www.daum.net/" target="_blank" title="111">
+                                    <img src="\img\1.jpg" width="180px" height="150px">
+                                    <p><strong>이 사진이 너무 좋았엉</strong></p>
+                                    <p>이 상자를 눌러봐!</p>
+                                </a>
+                            </li>
+                            <li class="card">
+                                <a href="https://www.instagram.com/" target="_blank" title="222">
+                                    <img src="\img\2.jpg" width="180px" height="150px">
+                                    <p><strong>이 사진도 좋아</strong></p>
+                                    <p>이 상자도 눌러!</p>
+                                </a>
+                            </li>
+                            <li class="card">
+                                <a href="https://www.youtube.com/watch?v=2s0n2OJonpE" target="_blank" title="333">
+                                    <img src="\img\12.jpg" width="180px" height="150px">
+                                    <p><strong>이런 사진이 너무 좋더라</strong></p>
+                                    <p>이 상자를 눌러</p>
+                                </a>
+                            </li>
+                            <br>
+                            <li class="card">
+                                <a href="https://gall.dcinside.com/board/view/?id=hiphop&no=7317802" target="_blank" title="444">
+                                    <img src="\img\doggy1.jpg" width="180px" height="150px">
+                                    <p><strong>개새끼</strong></p>
+                                    <p>이하 생략</p>
+                                </a>
+                            </li>
+                            <li class="card">
+                                <a href="http://zezihi.com/php8/pages/main.php" target="_blank" title="555">
+                                    <img src="\img\6.jpg" width="180px" height="150px">
+                                    <p><strong>최고</strong></p>
+                                    <p>상자를 눌러!</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </article>
+
+            <article>
+                <section class="Media_flex-container">
+                    <div class="Media_flex-item">
+                        <div class="Media_Size">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/L5W7DuBKpmE" 
+                            title="YouTube video player" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="Media_flex-item"><strong>kumalala kumalala kumalala savesta</strong></div>
+                </section>
+            </article>
+
+            <article>
+                <section class="Text_Size">
+                    <h3>JS</h3>
+                    <p>자바스크립트로 구현해본 간단한 게임입니다.</p>
+                    <ul>
+                        <li class="card">
+                            <a href="#">
+                                <img src="\img\9.jpg" width="180px" height="150px">
+                                <p><strong>GAME1</strong></p>
+                                <p>첫번째 게임입니다.</p>
+                            </a>
+                        </li>
+                        <li class="card">
+                            <a href="#">
+                                <img src="\img\9.jpg" width="180px" height="150px">
+                                <p><strong>GAME2</strong></p>
+                                <p>두번째 게임입니다.</p>
+                            </a>
+                        </li>
+                        <li class="card">
+                            <a href="#">
+                                <img src="\img\9.jpg" width="180px" height="150px">
+                                <p><strong>GAME3</strong></p>
+                                <p>세번째 게임입니다.</p>
+                            </a>
+                        </li>
+                        <li class="card">
+                            <a href="#">
+                                <img src="\img\9.jpg" width="180px" height="150px">
+                                <p><strong>GAME4</strong></p>
+                                <p>네번째 게임입니다.</p>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </article>
+        </main>
+            
+        <footer>
+            <ul>
+                <li><h3>SNS</h3></li>
+                <li>인스타그램</li>
+                <li>페이스북</li>
+                <li>트위터</li>
+                <li>블로그</li>
+                <li>블로그</li>
+                <li>블로그</li>
+                <li>블로그</li>
+                <li>블로그</li>
+                <li>블로그</li>
+                <li>블로그</li>
+                <li>블로그</li>
+                <li>블로그</li>
+            </ul>
+            <em>©zezihi. All rights reserved.</em>
+        </footer> -->
+    </body>
+</html>
