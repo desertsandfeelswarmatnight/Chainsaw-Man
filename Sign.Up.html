@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>회원 가입</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="C:\Users\82103\Desktop\portfolio\Sign.Up.css">
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+        <script>
+            var firebaseConfig = {
+                apiKey: "AIzaSyC4FXrdFdtyHZwfFiUSChwUO5V_jS4iuLw",
+                authDomain: "iron-e36d5.firebaseapp.com",
+                databaseURL: "https://iron-e36d5-default-rtdb.firebaseio.com",
+                projectId: "iron-e36d5",
+                storageBucket: "iron-e36d5.appspot.com",
+                messagingSenderId: "97999513627",
+                appId: "1:97999513627:web:565a6a518682bae1dc70be" };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+        </script>
+        <script>
+            let login_validation = 0 , password1_validation = 0 , password2_validation = 0 , email_validation = 0;
+
+            window.addEventListener("load",function() {
+
+                document.querySelector('#btn').addEventListener("click",function(e) {
+                    e.preventDefault();
+                    const db = firebase.firestore();
+                    db.collection("Info").add({
+                        ID : document.querySelector('input[name="ID"]').value,
+                        PW : document.querySelector('input[name="password1"]').value,
+                        EMAIL : document.querySelector('input[name="email"]').value,
+                        DATE : new Date()
+                    }).then((result) => {
+                        console.log(result);
+                        alert('전송에 성공');
+                        document.querySelector('input[name="ID"]').value = "";
+                        document.querySelector('input[name="password1"]').value = "";
+                        document.querySelector('input[name="password2"]').value = "";
+                        document.querySelector('input[name="email"]').value = "";
+                    });
+                });
+
+                document.querySelector('input[name="ID"]').addEventListener("input",function() {
+
+                    if(login_validation == 0 || password1_validation == 0 || password2_validation == 0 || email_validation == 0)
+                        {   document.getElementById('btn').disabled = true;     }
+                    if(login_validation == 1 && password1_validation == 1 && password2_validation == 1 && email_validation == 1)
+                        {   document.getElementById('btn').disabled = false;    }
+
+                    console.log("login = " + login_validation + "  pw1 = " + password1_validation + "  pw2 = " + password2_validation + "  email = " + email_validation);
+
+                    if(document.querySelector('input[name="ID"]').value == "")
+                        {   document.querySelectorAll('.sign_up-validation')[0].innerText = "아이디는 필수 입력값입니다.";
+                            login_validation = 0;   }
+
+                    if(document.querySelector('input[name="ID"]').value != "" && document.querySelector('input[name="ID"]').value.length < 5)
+                        {   document.querySelectorAll('.sign_up-validation')[0].innerText = "아이디는 5자 이상으로 입력해주세요.";
+                            login_validation = 0;   }
+
+                    if(document.querySelector('input[name="ID"]').value.length >= 5)
+                        {   if(/^[0-9a-zA-Z]{5,11}$/i.test(document.querySelector('input[name="ID"]')).value == false)
+                                {   document.querySelectorAll('.sign_up-validation')[0].innerText = "올바른 아이디를 입력해주세요.";
+                                    login_validation = 0;   }
+                            else
+                                {   document.querySelectorAll('.sign_up-validation')[0].innerText = "아주 올바릅니다.";
+                                    login_validation = 1;   }}});
+
+                document.querySelector('input[name="password1"]').addEventListener("input",function() {
+
+                    if(login_validation == 0 || password1_validation == 0 || password2_validation == 0 || email_validation == 0)
+                        {   document.getElementById('btn').disabled = true;     }
+                    if(login_validation == 1 && password1_validation == 1 && password2_validation == 1 && email_validation == 1)
+                        {   document.getElementById('btn').disabled = false;    }
+
+                    console.log("login = " + login_validation + "  pw1 = " + password1_validation + "  pw2 = " + password2_validation + "  email = " + email_validation);
+
+                    if(document.querySelector('input[name="password1"]').value == "")
+                        {   document.querySelector('input[name="password1"]').style.marginBottom = "0px";
+                            document.querySelectorAll('.sign_up-validation')[1].style.margin = "5px 0px 5px 0px";
+                            document.querySelectorAll('.sign_up-validation')[1].innerText = "비밀번호는 필수 입력값입니다.";
+                            password1_validation = 0;   }
+
+                    else if(document.querySelector('input[name="password1"]').value != "" && document.querySelector('input[name="password1"]').value.length < 8)
+                        {   document.querySelector('input[name="password1"]').style.marginBottom = "0px";
+                            document.querySelectorAll('.sign_up-validation')[1].style.margin = "5px 0px 5px 0px";
+                            document.querySelectorAll('.sign_up-validation')[1].innerText = "비밀번호는 8자와 30자 사이로 입력해주세요.";
+                            password1_validation = 0;   }
+
+                    if(document.querySelector('input[name="password1"]').value.length >= 8)
+                        {   
+                            if(/[a-zA-Z]/g.test(document.querySelector('input[name="password1"]').value) == false || /[0-9]/g.test(document.querySelector('input[name="password1"]').value) == false || /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g.test(document.querySelector('input[name="password1"]').value) == false)
+                                {   document.querySelector('input[name="password1"]').style.marginBottom = "0px";
+                                    document.querySelectorAll('.sign_up-validation')[1].style.margin = "5px 0px 5px 0px";
+                                    document.querySelectorAll('.sign_up-validation')[1].innerText = "숫자, 영문 대소문자, 특수문자 중 두가지 이상으로 조합해 주십시오.";
+                                    password1_validation = 0;   }
+                            else
+                                {   document.querySelector('input[name="password1"]').style.marginBottom = "5px";
+                                    //document.querySelectorAll('.sign_up-validation')[1].innerText = "아주 올바른 비밀번호입니다!!!";
+                                    document.querySelectorAll('.sign_up-validation')[1].innerText = "";
+                                    password1_validation = 1;   }}});
+
+                document.querySelector('input[name="password2"]').addEventListener("input",function() {
+
+                    if(login_validation == 0 || password1_validation == 0 || password2_validation == 0 || email_validation == 0)
+                        {   document.getElementById('btn').disabled = true;     }
+                    if(login_validation == 1 && password1_validation == 1 && password2_validation == 1 && email_validation == 1)
+                        {   document.getElementById('btn').disabled = false;    }
+                    
+                    console.log("login = " + login_validation + "  pw1 = " + password1_validation + "  pw2 = " + password2_validation + "  email = " + email_validation);
+
+                    if(document.querySelector('input[name="password2"]').value == "")
+                        {   document.querySelectorAll('.sign_up-validation')[2].innerText = "비밀번호 재확인은 필수 입력값입니다.";
+                            password2_validation = 0;   }
+                    else
+                        {   if(document.querySelector('input[name="password1"]').value  !=  document.querySelector('input[name="password2"]').value)
+                                {   document.querySelectorAll('.sign_up-validation')[2].innerText = "비밀번호가 일치하지 않습니다.";
+                                    password2_validation = 0;   }
+                            else
+                                {   document.querySelectorAll('.sign_up-validation')[2].innerText = "";
+                                    password2_validation = 1;   }}});
+
+                document.querySelector('input[name="email"]').addEventListener("input",function() {
+                    
+                    if(login_validation == 0 || password1_validation == 0 || password2_validation == 0 || email_validation == 0)
+                        {   document.getElementById('btn').disabled = true;     }
+                    if(login_validation == 1 && password1_validation == 1 && password2_validation == 1 && email_validation == 1)
+                        {   document.getElementById('btn').disabled = false;    }
+                    
+                    console.log("login = " + login_validation + "  pw1 = " + password1_validation + "  pw2 = " + password2_validation + "  email = " + email_validation);
+
+                    if(document.querySelector('input[name="email"]').value == "")
+                        {   document.querySelectorAll('.sign_up-validation')[3].innerText = "이메일은 필수 입력값입니다.";
+                            email_validation = 0;   }
+                    else
+                        {   if(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(document.querySelector('input[name="email"]').value) == false)
+                                {   document.querySelectorAll('.sign_up-validation')[3].innerText = "올바른 입력값을 입력해주세요";
+                                    email_validation = 0;   }
+                            else
+                                {   document.querySelectorAll('.sign_up-validation')[3].innerText = "";
+                                    email_validation = 1;   }}});});
+        </script>
+    </head>
+
+    <body>
+        <main role="main">
+            <article>
+                <form>
+                    <section id="sign_up-container">
+                        <h1>회원 가입</h1>
+                        <div class="flex-container">
+                            <div class="flex-item">
+                                <label for="ID">아이디</label>
+                                <input type="text" name="ID" placeholder="영문, 숫자 5-11자" autocomplete="username" maxlength="11" required>
+                                <p class="sign_up-validation"></p>
+                            </div>
+                        
+                            <div class="flex-item">
+                                <label for="password1">비밀번호</label>
+                                <input type="password" name="password1" placeholder="숫자, 영문, 특수문자 조합 최소 8자" autocomplete="new-password" style="margin-bottom: 10px;" maxlength="30" required>
+                                <p class="sign_up-validation"></p>
+                                <input type="password" name="password2" placeholder="비밀번호 재입력" autocomplete="new-password" maxlength="30" required>
+                                <p class="sign_up-validation"></p>
+                            </div>
+
+                            <div class="flex-item">
+                                <label for="email">이메일</label>
+                                <input type="email" name="email" autocomplete="email" required>
+                                <p class="sign_up-validation"></p>
+                            </div>
+
+                            <div class="flex-item">
+                                <button type="submit" id="btn">회원 가입</button>
+                                <p class="sign_up-validation"></p>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+                
+            </article>
+        </main>
+    </body>
+</html>
